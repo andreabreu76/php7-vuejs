@@ -18,9 +18,9 @@ Frontend
 
 > NodeJS 15.14.0 (Dockerfile TAG: `latest`)
 >
-> Yarn 1.22.5
+> Npm 7.7.6
 >
-> NuxtJS 2.15.2
+> Vue/CLI 4.5.12
 
 Database
 
