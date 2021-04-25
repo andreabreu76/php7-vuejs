@@ -98,7 +98,7 @@ cd ../frontend
 Execute:
 
 ```bash
-npm install
+docker exec -it frontend npm install
 ```
 
 Pronto agora sua aplicação e ambiente deve rodar como deseja em:
