@@ -1,0 +1,78 @@
+version: '3'
+services:
+
+    # The Backend Application
+    backend:
+        build:
+            context: ./
+            dockerfile: php.dockerfile
+        image: andreabreu76/php7fpm-laravel8
+        container_name: backend 
+        working_dir: /var/www
+        command: ['bash','-c','php artisan serve --host=0.0.0.0 --port=9000' ]
+        volumes:
+            - ./backend/:/var/www
+        environment:
+            DB_PORT: 3306
+            DB_HOST: mariadb
+        ports:
+            - 9000:9000
+        networks:
+            - development_net
+    
+    # The Frontend Application        
+    frontend:
+        build:
+            context: ./
+            dockerfile: vuejs.dockerfile
+        image: andreabreu76/vuejs
+        container_name: frontend
+        working_dir: /home/node/app
+        command: ['npm','run','serve']
+        volumes:
+            - ./frontend/:/home/node/app
+        ports:
+            - 8080:8080
+        networks:
+            - development_net
+    
+    # The Web Server
+    web:
+        build:
+            context: ./
+            dockerfile: web.dockerfile
+        image: andreabreu76/nginx
+        container_name: host
+        working_dir: /var/www
+        ports:
+            - 80:80
+        depends_on:
+            - backend
+            - frontend
+        networks:
+            - development_net
+
+    # The Database
+    database:
+        build:
+            context: ./
+            dockerfile: mariadb.dockerfile
+        image: andreabreu76/database
+        container_name: database
+        volumes:
+            - dbdata:/var/lib/mysql
+        environment:
+            - "MYSQL_DATABASE=homestead"
+            - "MYSQL_USER=homestead"
+            - "MYSQL_PASSWORD=secret"
+            - "MYSQL_ROOT_PASSWORD=secret"
+        ports:
+            - "3306:3306"
+        networks:
+            - development_net
+    
+volumes:
+    dbdata:
+networks:
+    development_net:
+        driver: "bridge"
