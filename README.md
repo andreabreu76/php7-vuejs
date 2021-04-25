@@ -39,13 +39,13 @@ Para saber como montar seu ambiente Windows com WSL2 acesse [WSL 2 - Developer A
 Faça o clone do repositorio
 
 ```bash
-git clone https://github.com/andreabreu76/benkyo.git
+git clone https://github.com/andreabreu76/php7-vuejs.git
 ```
 
 Inicie o container
 
 ```bash
-cd benkyo && docker-composer up --build -d
+cd php7-vuejs && docker-composer up --build -d
 ```
 
 Rode o composer na pasta php
@@ -92,23 +92,13 @@ docker exec -it backend chmod -R ugo+rwx storage/
 Agora vamos ao frontend (considerando que está na pasta ./php/).
 
 ```bash
-cd ../nuxt
+cd ../frontend
 ```
 
 Execute:
 
 ```bash
-yarn install
-```
-
-Logo em seguida modifique o arquivo `nuxt.config.js` adicionando o seguinte conteúdo dentro de `export default`
-
-```javascript
-server: {
-    port: 3000,
-    host: '0.0.0.0',
-    timing: false
-},
+npm install
 ```
 
 Pronto agora sua aplicação e ambiente deve rodar como deseja em:
