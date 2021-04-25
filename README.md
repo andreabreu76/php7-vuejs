@@ -1,4 +1,4 @@
-# Benkyo - Laravel, NuxtJS & MariaDB Dockerizado
+# php7-vuejs - Laravel, VueJS & MariaDB Dockerizado
 
 Todo projeto de aprendizado meu se chama benkyo onde lê-se *Benkyō* por ser uma palavra japonesa para "Aprender".
 
